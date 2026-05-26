@@ -1,0 +1,24 @@
+enable
+configure terminal
+
+! Konfigurasi IP Interface ke arah LAN Kanan
+interface FastEthernet0/0
+ip address 192.168.2.1 255.255.255.0
+no shutdown
+exit
+
+! Konfigurasi IP Interface ke arah Router0
+interface FastEthernet0/1
+ip address 10.0.0.2 255.0.0.0
+no shutdown
+exit
+
+! Konfigurasi Routing EIGRP
+router eigrp 10
+network 192.168.2.0
+network 10.0.0.0
+exit
+exit
+
+! Simpan konfigurasi
+write memory
